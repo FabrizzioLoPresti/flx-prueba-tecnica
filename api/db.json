@@ -3,9 +3,9 @@
     {
       "id": 1,
       "username": "user1",
+      "email": "john.doe@example.com",
       "name": "John",
       "lastname": "Doe",
-      "email": "john.doe@example.com",
       "status": "active",
       "age": 30
     },
@@ -165,9 +165,9 @@
     {
       "id": 19,
       "username": "user19",
+      "email": "liam.flores@example.com",
       "name": "Liam",
       "lastname": "Flores",
-      "email": "liam.flores@example.com",
       "status": "active",
       "age": 37
     },

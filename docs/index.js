@@ -4,7 +4,8 @@
 */
 
 function reverseString(str) {
-  // Tu solución acá  
+  // Tu solución acá
+  return str.split("").reverse().join("");
 }
 
 /*
@@ -14,6 +15,9 @@ function reverseString(str) {
 */
 function isPalindrome(str) {
   // Tu solución acá
+  const word = str.toLowerCase();
+  const reverseWord = word.split("").reverse().join("");
+  return word === reverseWord;
 }
 
 /*
@@ -31,8 +35,18 @@ function isPalindrome(str) {
 
 function closestPair(arr) {
   // Tu solución acá
+  arr.sort((a, b) => a - b);
+  let minDiff = Infinity;
+  let pair = [];
+  arr.forEach((num, i) => {
+    const diff = Math.abs(num - arr[i + 1]);
+    if (diff < minDiff) {
+      minDiff = diff;
+      pair = [num, arr[i + 1]];
+    }
+  });
+  return pair;
 }
-
 
 /*
   Ejercicio 4: Calculadora - Programación Orientada a Objetos
@@ -68,11 +82,61 @@ function closestPair(arr) {
 
 class Calculator {
   // Tu solución acá
+  constructor() {
+    this.lastResult = null;
+  }
+
+  add(a, b) {
+    const result = a + b;
+    this.lastResult = result;
+    return result;
+  }
+
+  subtract(a, b) {
+    const result = a - b;
+    this.lastResult = result;
+    return result;
+  }
+
+  multiply(a, b) {
+    const result = a * b;
+    this.lastResult = result;
+    return result;
+  }
+
+  divide(a, b) {
+    if (b === 0) {
+      throw new Error("Division by zero is not allowed");
+    }
+    const result = a / b;
+    this.lastResult = result;
+    return result;
+  }
+
+  getLastResult() {
+    if (this.lastResult === null) {
+      throw new Error("No calculations performed yet.");
+    }
+    return this.lastResult;
+  }
 }
+
+Calculator.prototype.exponentiate = function (base, exponent) {
+  if (exponent === 0) {
+    this.lastResult = 1;
+    return 1;
+  } else if (exponent < 0) {
+    throw new Error("Exponentiation with negative exponent is not allowed");
+  } else {
+    const result = Math.pow(base, exponent);
+    this.lastResult = result;
+    return result;
+  }
+};
 
 module.exports = {
   closestPair,
   isPalindrome,
   reverseString,
   Calculator,
-}
+};
